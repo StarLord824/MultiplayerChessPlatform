@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Next-Gen Chess Platform</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600&family=Manrope:wght@400;500&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- AOS -->
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+
+  <!-- Lucide -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Particles JS -->
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+
+  <!-- Chessboard -->
+  <link rel="stylesheet" href="https://unpkg.com/cm-chessboard@8.2.7/assets/chessboard.css" />
+  <script src="https://unpkg.com/cm-chessboard@8.2.7/umd/chessboard.min.js"></script>
+
+  <style>
+    body{font-family:"Manrope",sans-serif}
+    h1,h2,h3,h4{font-family:"Space Grotesk",sans-serif;letter-spacing:-0.02em}
+    @keyframes slideUpFade{0%{opacity:0;transform:translateY(40px)}100%{opacity:1;transform:translateY(0)}}
+    .animate-slideUpFade{animation:slideUpFade 1s ease forwards}
+  </style>
+  <style>
+      /* Custom font utilities */
+      .font-space-grotesk { font-family: 'Space Grotesk', sans-serif !important; }
+    </style>
+</head>
+<body class="bg-[#0A0A1F] text-gray-200 overflow-x-hidden">
+
+  <!-- Particles -->
+  <div id="particles-js" class="fixed inset-0 -z-10"></div>
+
+  <!-- Glassmorphism Floating Header -->
+  <header class="fixed top-4 left-1/2 -translate-x-1/2 w-[95%] md:w-[92%] lg:w-[86%] z-50">
+    <nav class="flex items-center justify-between px-6 py-3 bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl shadow-lg shadow-black/30">
+      <div class="flex items-center gap-3">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-[#00B4FC]" viewBox="0 0 24 24" fill="currentColor"><path d="M5 22h14M5 2h14a2 2 0 012 2v16a2 2 0 01-2 2H5a2 2 0 01-2-2V4a2 2 0 012-2z"/></svg>
+        <span class="font-semibold tracking-tight">Next-Gen&nbsp;Chess</span>
+      </div>
+      <ul class="hidden md:flex gap-6 text-sm">
+        <li><a href="#" class="hover:text-white transition">Features</a></li>
+        <li><a href="#" class="hover:text-white transition">Tournaments</a></li>
+        <li><a href="#" class="hover:text-white transition">Pricing</a></li>
+        <li><a href="#" class="hover:text-white transition">Blog</a></li>
+      </ul>
+      <div class="flex items-center gap-3">
+        <button class="hidden md:inline px-4 py-2 rounded-lg border border-white/20 hover:border-white/40 backdrop-blur-md transition text-sm">Sign&nbsp;in</button>
+        <button class="px-4 py-2 rounded-lg bg-[#00B4FC] hover:bg-[#00a5e5] text-white text-sm font-medium transition shadow-lg">Get&nbsp;Started</button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Hero -->
+  <section class="relative px-6 md:px-10 lg:px-24 pt-36 pb-32 flex flex-col lg:flex-row items-center gap-16">
+    <div class="max-w-xl" data-aos="fade-right">
+      <h1 class="text-4xl md:text-6xl lg:text-7xl font-semibold tracking-tight text-white">Play. Learn. Dominate.<br/>Chess, Redefined.</h1>
+      <p class="mt-6 text-lg md:text-xl text-gray-300">Master the game with powerful analysis, live multiplayer, and AI training tools.</p>
+      <div class="mt-8 flex items-center gap-4">
+        <button class="px-6 py-3 rounded-lg bg-[#00B4FC] hover:bg-[#00a5e5] text-white font-medium transition shadow-lg">Play&nbsp;Now</button>
+        <button class="px-6 py-3 rounded-lg border border-white/20 hover:border-white/40 backdrop-blur-md transition">Explore&nbsp;Features</button>
+      </div>
+      <p class="mt-6 text-sm text-gray-400"><span id="liveGames" class="text-white font-medium">3,204</span> games live now</p>
+    </div>
+    <div class="relative w-full max-w-md h-[420px] rounded-xl overflow-hidden shadow-2xl" data-aos="fade-left">
+      <img src="https://images.unsplash.com/photo-1621619856624-42fd193a0661?w=2160&q=80" alt="3D Chess" class="object-cover w-full h-full opacity-80" />
+      <div class="absolute inset-0 bg-gradient-to-tr from-[#00B4FC]/20 via-transparent to-[#FFD700]/10"></div>
+    </div>
+  </section>
+
+  <!-- Feature Grid -->
+  <section class="px-6 md:px-10 lg:px-24 py-20 space-y-14">
+    <h2 class="text-3xl md:text-4xl font-semibold tracking-tight text-center text-white" data-aos="fade-up">Unrivaled Feature Set</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      <!-- Cards ... (unchanged) -->
+      <!-- Live Multiplayer -->
+      <div class="bg-white/5 border border-white/10 backdrop-blur-sm p-8 rounded-xl hover:shadow-xl hover:scale-[1.03] transition" data-aos="zoom-in" data-aos-delay="50">
+        <div class="flex items-center justify-center w-12 h-12 rounded-lg bg-[#00B4FC]/10 text-[#00B4FC] mb-6">
+          <i data-lucide="users" class="w-5 h-5"></i>
+        </div>
+        <h3 class="text-xl font-medium text-white mb-2">Live Multiplayer &amp; Elo Ratings</h3>
+        <p class="text-gray-400 text-sm leading-relaxed">Battle players worldwide with real-time matching and precise rating updates.</p>
+      </div>
+      <!-- AI -->
+      <div class="bg-white/5 border border-white/10 backdrop-blur-sm p-8 rounded-xl hover:shadow-xl hover:scale-[1.03] transition" data-aos="zoom-in" data-aos-delay="100">
+        <div class="flex items-center justify-center w-12 h-12 rounded-lg bg-[#FFD700]/10 text-[#FFD700] mb-6">
+          <i data-lucide="brain" class="w-5 h-5"></i>
+        </div>
+        <h3 class="text-xl font-medium text-white mb-2">AI-Powered Game Analysis</h3>
+        <p class="text-gray-400 text-sm leading-relaxed">Get instant insights, blunder detection and recommended best moves.</p>
+      </div>
+      <!-- Tactics -->
+      <div class="bg-white/5 border border-white/10 backdrop-blur-sm p-8 rounded-xl hover:shadow-xl hover:scale-[1.03] transition" data-aos="zoom-in" data-aos-delay="150">
+        <div class="flex items-center justify-center w-12 h-12 rounded-lg bg-[#00B4FC]/10 text-[#00B4FC] mb-6">
+          <i data-lucide="zap" class="w-5 h-5"></i>
+        </div>
+        <h3 class="text-xl font-medium text-white mb-2">Tactics Trainer &amp; Lessons</h3>
+        <p class="text-gray-400 text-sm leading-relaxed">Sharpen your tactics with adaptive puzzles and bite-sized lessons.</p>
+      </div>
+      <!-- Tournaments -->
+      <div class="bg-white/5 border border-white/10 backdrop-blur-sm p-8 rounded-xl hover:shadow-xl hover:scale-[1.03] transition" data-aos="zoom-in" data-aos-delay="200">
+        <div class="flex items-center justify-center w-12 h-12 rounded-lg bg-[#FFD700]/10 text-[#FFD700] mb-6">
+          <i data-lucide="trophy" class="w-5 h-5"></i>
+        </div>
+        <h3 class="text-xl font-medium text-white mb-2">Real-Time Tournaments</h3>
+        <p class="text-gray-400 text-sm leading-relaxed">Compete in ranked arenas and win seasonal rewards.</p>
+      </div>
+      <!-- Cloud -->
+      <div class="bg-white/5 border border-white/10 backdrop-blur-sm p-8 rounded-xl hover:shadow-xl hover:scale-[1.03] transition" data-aos="zoom-in" data-aos-delay="250">
+        <div class="flex items-center justify-center w-12 h-12 rounded-lg bg-[#00B4FC]/10 text-[#00B4FC] mb-6">
+          <i data-lucide="cloud" class="w-5 h-5"></i>
+        </div>
+        <h3 class="text-xl font-medium text-white mb-2">Cloud Game Saves</h3>
+        <p class="text-gray-400 text-sm leading-relaxed">Resume any game on any device, instantly.</p>
+      </div>
+      <!-- Community -->
+      <div class="bg-white/5 border border-white/10 backdrop-blur-sm p-8 rounded-xl hover:shadow-xl hover:scale-[1.03] transition" data-aos="zoom-in" data-aos-delay="300">
+        <div class="flex items-center justify-center w-12 h-12 rounded-lg bg-[#FFD700]/10 text-[#FFD700] mb-6">
+          <i data-lucide="message-circle" class="w-5 h-5"></i>
+        </div>
+        <h3 class="text-xl font-medium text-white mb-2">Chat &amp; Community Hub</h3>
+        <p class="text-gray-400 text-sm leading-relaxed">Join clubs, discuss openings, and share victories.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Demo -->
+  <section class="px-6 md:px-10 lg:px-24 py-24 flex flex-col lg:flex-row items-center gap-12">
+    <div class="flex-1" data-aos="fade-right">
+      <h2 class="text-3xl md:text-4xl font-semibold tracking-tight text-white mb-4">Try a Quick Puzzle</h2>
+      <p class="text-gray-400 max-w-md mb-8">No login required. Solve the mate-in-two – drag &amp; drop pieces on the board below.</p>
+      <button class="px-5 py-3 rounded-lg bg-[#00B4FC] hover:bg-[#00a5e5] text-white font-medium transition shadow-lg" onclick="resetPuzzle()">Reset&nbsp;Puzzle</button>
+    </div>
+    <div class="flex-1" data-aos="fade-left">
+      <div id="puzzleBoard" class="w-full max-w-md mx-auto shadow-2xl rounded-lg overflow-hidden"></div>
+    </div>
+  </section>
+
+  <!-- Testimonials (unchanged) -->
+  <section class="px-6 md:px-10 lg:px-24 py-24 space-y-14">
+    <h2 class="text-3xl md:text-4xl font tracking-tight text-center text-white" data-aos="fade-up">Players Love It</h2>
+    <div class="grid sm:grid-cols-2 gap-8">
+      <div class="bg-white/5 border border-white/10 rounded-xl p-8 backdrop-blur-sm" data-aos="zoom-in">
+        <div class="flex items-center gap-4 mb-4">
+          <img src="https://i.pravatar.cc/80?img=32" class="w-12 h-12 rounded-full object-cover" alt="">
+          <div>
+            <p class="font-medium text-white">ChessLover98</p>
+            <p class="text-xs text-gray-400">2100 Elo • Premium</p>
+          </div>
+        </div>
+        <p class="text-gray-300 leading-relaxed">“The analysis depth is insane. I improved 150 points in just two weeks!”</p>
+      </div>
+      <div class="bg-white/5 border border-white/10 rounded-xl p-8 backdrop-blur-sm" data-aos="zoom-in" data-aos-delay="100">
+        <div class="flex items-center gap-4 mb-4">
+          <img src="https://i.pravatar.cc/80?img=47" class="w-12 h-12 rounded-full object-cover" alt="">
+          <div>
+            <p class="font-medium text-white">GM_Petrova</p>
+            <p class="text-xs text-gray-400">Grandmaster • Elite</p>
+          </div>
+        </div>
+        <p class="text-gray-300 leading-relaxed">“Finally a platform that feels built for serious preparation and fun blitz alike.”</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing (unchanged) -->
+  <section class="px-6 md:px-10 lg:px-24 py-24">
+    <h2 class="text-3xl md:text-4xl font-semibold tracking-tight text-center text-white mb-16" data-aos="fade-up">Choose Your Plan</h2>
+    <div class="grid md:grid-cols-3 gap-8">
+      <div class="flex flex-col bg-white/5 border border-white/10 rounded-xl p-8 backdrop-blur-sm" data-aos="fade-up" data-aos-delay="50">
+        <h3 class="text-xl font-medium text-white mb-4">Free</h3>
+        <p class="text-4xl font-semibold text-white mb-6">0<span class="text-base font-normal text-gray-400">/mo</span></p>
+        <ul class="space-y-2 text-gray-300 flex-1">
+          <li>Unlimited Blitz &amp; Rapid</li>
+          <li>Basic Analysis</li>
+          <li>Community Chat</li>
+        </ul>
+        <button class="mt-8 px-6 py-3 rounded-lg bg-[#00B4FC] hover:bg-[#00a5e5] text-white font-medium transition shadow-lg">Start&nbsp;for&nbsp;Free</button>
+      </div>
+      <div class="flex flex-col bg-gradient-to-b from-white/10 to-white/5 border border-[#FFD700]/30 rounded-xl p-8 backdrop-blur-sm shadow-xl scale-[1.04]" data-aos="fade-up" data-aos-delay="100">
+        <h3 class="text-xl font-medium text-[#FFD700] mb-4">Premium</h3>
+        <p class="text-4xl font-semibold text-white mb-6">$9<span class="text-base font-normal text-gray-400">/mo</span></p>
+        <ul class="space-y-2 text-gray-300 flex-1">
+          <li>Deep Engine Analysis</li>
+          <li>Unlimited Tactics</li>
+          <li>Ad-Free Experience</li>
+        </ul>
+        <button class="mt-8 px-6 py-3 rounded-lg bg-[#FFD700]/90 hover:bg-[#FFD700]/80 text-[#0A0A1F] font-medium transition">Upgrade</button>
+      </div>
+      <div class="flex flex-col bg-white/5 border border-white/10 rounded-xl p-8 backdrop-blur-sm" data-aos="fade-up" data-aos-delay="150">
+        <h3 class="text-xl font-medium text-white mb-4">Elite</h3>
+        <p class="text-4xl font-semibold text-white mb-6">$19<span class="text-base font-normal text-gray-400">/mo</span></p>
+        <ul class="space-y-2 text-gray-300 flex-1">
+          <li>1-on-1 GM Coaching</li>
+          <li>Priority Support</li>
+          <li>Exclusive Tournaments</li>
+        </ul>
+        <button class="mt-8 px-6 py-3 rounded-lg bg-[#00B4FC] hover:bg-[#00a5e5] text-white font-medium transition shadow-lg">Upgrade</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ with short answers -->
+  <section class="px-6 md:px-10 lg:px-24 py-24">
+    <h2 class="text-3xl md:text-4xl font-semibold tracking-tight text-center text-white mb-12" data-aos="fade-up">Frequently Asked Questions</h2>
+    <div class="max-w-3xl mx-auto space-y-4">
+      <!-- Q1 -->
+      <div class="border border-white/10 rounded-lg overflow-hidden" data-aos="fade-up" data-aos-delay="50">
+        <button class="w-full flex justify-between items-center p-4 bg-white/5 hover:bg-white/10 transition faq-toggle">
+          <span class="flex flex-col text-left">
+            <span>Is the Free plan really unlimited?</span>
+            <span class="text-xs text-gray-400">Short answer: Yes, unlimited games.</span>
+          </span>
+          <i data-lucide="chevron-down" class="w-5 h-5 faq-icon"></i>
+        </button>
+        <div class="p-4 hidden faq-content bg-white/5">Yes! Play as many games as you like without ever paying a cent. There are no daily caps or hidden costs.</div>
+      </div>
+      <!-- Q2 -->
+      <div class="border border-white/10 rounded-lg overflow-hidden" data-aos="fade-up" data-aos-delay="100">
+        <button class="w-full flex justify-between items-center p-4 bg-white/5 hover:bg-white/10 transition faq-toggle">
+          <span class="flex flex-col text-left">
+            <span>Can I cancel anytime?</span>
+            <span class="text-xs text-gray-400">Short answer: Absolutely.</span>
+          </span>
+          <i data-lucide="chevron-down" class="w-5 h-5 faq-icon"></i>
+        </button>
+        <div class="p-4 hidden faq-content bg-white/5">Yes. Manage your subscription in settings and cancel with one click—your benefits remain until the billing period ends.</div>
+      </div>
+      <!-- Q3 -->
+      <div class="border border-white/10 rounded-lg overflow-hidden" data-aos="fade-up" data-aos-delay="150">
+        <button class="w-full flex justify-between items-center p-4 bg-white/5 hover:bg-white/10 transition faq-toggle">
+          <span class="flex flex-col text-left">
+            <span>Do you support over-the-board (OTB) analysis?</span>
+            <span class="text-xs text-gray-400">Short answer: Yes, via scan.</span>
+          </span>
+          <i data-lucide="chevron-down" class="w-5 h-5 faq-icon"></i>
+        </button>
+        <div class="p-4 hidden faq-content bg-white/5">Simply upload a photo or input the moves manually, and our engine will analyze your OTB game instantly.</div>
+      </div>
+      <!-- Q4 -->
+      <div class="border border-white/10 rounded-lg overflow-hidden" data-aos="fade-up" data-aos-delay="200">
+        <button class="w-full flex justify-between items-center p-4 bg-white/5 hover:bg-white/10 transition faq-toggle">
+          <span class="flex flex-col text-left">
+            <span>Is my data secure?</span>
+            <span class="text-xs text-gray-400">Short answer: Bank-grade security.</span>
+          </span>
+          <i data-lucide="chevron-down" class="w-5 h-5 faq-icon"></i>
+        </button>
+        <div class="p-4 hidden faq-content bg-white/5">We use end-to-end encryption and follow industry best practices. Your data is never sold or shared.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA (unchanged) -->
+  <section class="px-6 md:px-10 lg:px-24 py-24 text-center space-y-8">
+    <h2 class="text-4xl md:text-5xl font-semibold tracking-tight text-white">Ready to challenge your mind?</h2>
+    <div class="flex justify-center gap-4">
+      <button class="px-8 py-4 rounded-lg bg-[#00B4FC] hover:bg-[#00a5e5] text-white font-medium transition shadow-lg">Play&nbsp;Now</button>
+      <button class="px-8 py-4 rounded-lg border border-white/20 hover:border-white/40 backdrop-blur-md transition">Download&nbsp;App</button>
+    </div>
+  </section>
+
+  <!-- Footer (unchanged) -->
+  <footer class="px-6 md:px-10 lg:px-24 py-14 border-t border-white/10">
+    <div class="flex flex-col md:flex-row justify-between items-center gap-8">
+      <div class="flex items-center gap-3">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-[#00B4FC]" viewBox="0 0 24 24" fill="currentColor"><path d="M5 22h14M5 2h14a2 2 0 012 2v16a2 2 0 01-2 2H5a2 2 0 01-2-2V4a2 2 0 012-2z"/></svg>
+        <span class="font-semibold">Next-Gen&nbsp;Chess</span>
+      </div>
+      <ul class="flex gap-6 text-sm text-gray-400">
+        <li><a href="#" class="hover:text-white">Home</a></li>
+        <li><a href="#" class="hover:text-white">Blog</a></li>
+        <li><a href="#" class="hover:text-white">Contact</a></li>
+        <li><a href="#" class="hover:text-white">Tournaments</a></li>
+        <li><a href="#" class="hover:text-white">Privacy</a></li>
+      </ul>
+      <div class="flex gap-4 text-gray-400">
+        <a href="#"><i data-lucide="discord" class="w-5 h-5 hover:text-white"></i></a>
+        <a href="#"><i data-lucide="youtube" class="w-5 h-5 hover:text-white"></i></a>
+        <a href="#"><i data-lucide="twitter" class="w-5 h-5 hover:text-white"></i></a>
+        <a href="#"><i data-lucide="twitch" class="w-5 h-5 hover:text-white"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+    // Lucide icons
+    lucide.createIcons();
+
+    // AOS
+    AOS.init({ once:true, duration:700, easing:'ease-out-quart' });
+
+    // Particles
+    particlesJS("particles-js",{
+      particles:{ number:{ value:45 }, color:{ value:"#ffffff" }, opacity:{ value:0.05 }, size:{ value:2 }, move:{ enable:true, speed:0.3 } },
+      interactivity:{ events:{ onhover:{ enable:false } } }
+    });
+
+    // Live games counter
+    const counter=document.getElementById("liveGames");
+    setInterval(()=>{counter.textContent=(3200+Math.floor(Math.random()*100)).toLocaleString()},5000);
+
+    // Chess puzzle
+    const board=new Chessboard("puzzleBoard",{
+      position:"r1bqkbnr/pppppppp/n7/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 2 2",
+      sprite:{url:"https://cdn.jsdelivr.net/npm/cm-chessboard@8.2.7/assets/images/chessboard-sprite-staunty.svg",margin:2},
+      style:{aspectRatio:1,borderRadius:12}
+    });
+    function resetPuzzle(){board.setPosition("r1bqkbnr/pppppppp/n7/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 2 2")}
+
+    // FAQ accordion
+    document.querySelectorAll(".faq-toggle").forEach(btn=>{
+      btn.addEventListener("click",()=>{
+        const content=btn.parentElement.querySelector(".faq-content");
+        content.classList.toggle("hidden");
+        btn.querySelector(".faq-icon").classList.toggle("rotate-180");
+      })
+    });
+  </script>
+</body>
+</html>
